@@ -2,7 +2,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 <!-- SEO -->
-<title>{{ if .IsPage }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+<title>{{ if .IsPage }}{{ .Title }} – {{ end }}{{ .Site.Title }}</title>
 {{ with .Site.Params.author }}<meta name="author" content="{{ . }}" />{{ end }}
 {{ with .Site.Params.description }}<meta name="description" content="{{ . }}" />{{ end }}
 <meta name="robots" content="index, follow" />
@@ -22,7 +22,11 @@
 {{ with .Site.Params.favicon }}<link rel="icon" href="{{ . | absURL }}" />{{ end }}
 
 <!-- Styles -->
-<link rel="stylesheet" href="{{ "assets/css/split.css" | absURL }}" type="text/css" media="screen" />
+<style>
+  {{- $style := resources.Get "/css/split.scss" | resources.ToCSS | resources.PostCSS -}}
+  {{- $sass := $style.Content -}}
+  {{ $sass | safeCSS }}
+</style>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <!-- Image Styles -->

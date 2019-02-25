@@ -1,21 +1,24 @@
 //-------------------------------------------------------------------------------
-// Google Font Import
-//-------------------------------------------------------------------------------
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
-@import url('https://fonts.googleapis.com/css?family=Lora');
-
-//-------------------------------------------------------------------------------
 // Variables
 //-------------------------------------------------------------------------------
 
+// Color sheme inspired by:
+// http://www.thedayscolor.com/#radioheadthief
+
+$color-light:     #E5ECE1;
+$color-richgreen: #0d3018;
+$color-gold:      #FC8122;
+$color-charcoal:  #0C1A25;
+$color-blue:      #387A9F;
+$color-red:       #DD1A2A;
+
 // Colors
-$color-background : #061C30;
-$color-text       : #848d96;
-$color-link       : #848d96;
-$color-link-hover : #CA486d;
-$color-maverick   : #47bec7;
-$color-tagline    : #CCCCCC;
+$color-background : $color-light;
+$color-text       : $color-richgreen;
+$color-link       : $color-red;
+$color-link-hover : $color-red;
+$color-maverick   : $color-richgreen;
+$color-tagline    : $color-richgreen;
 
 // Breakpoints
 $bp-smallish      : 1200px;
@@ -34,6 +37,43 @@ $bp-mobile        : 500px;
     to   { opacity: 1;}
 }
 
+
+
+//-------------------------------------------------------------------------------
+// Select (theming)
+//-------------------------------------------------------------------------------
+::selection {
+  background-color: rgba($color-maverick, 0.15);
+  color: $color-text;
+}
+
+%decorated-link {
+  color: $color-link;
+  transition-duration: 0.6s;
+  border-bottom: 1px solid $color-link;
+  
+  .link-reveal {
+    display: inline-block;
+    width: 0;
+    transition: .3s;
+    opacity: 0;
+    height: 1em;
+    transform: translateX(-5px);
+  }
+
+  &:hover {
+    color: $color-link-hover;
+    transition-duration: 0.6s;
+    border-bottom-color: transparent;
+    
+    .link-reveal {
+      opacity: 1;
+      width: 1em;
+      transform: translateX(0);
+    }
+  }
+}
+
 //-------------------------------------------------------------------------------
 // Content
 //-------------------------------------------------------------------------------
@@ -44,11 +84,10 @@ html {
 
 body.page-template-page-fullsingle-split {
   background-color: $color-background;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
+  font-family: 'Sarine', Futura, sans-serif;
+  font-weight: 300;
   font-size: 21px;
-  line-height: 33px;
-  letter-spacing: -0.2px;
+  line-height: 1.2;
   color: $color-text;
   animation: fadein 2s;
 
@@ -68,7 +107,7 @@ body.page-template-page-fullsingle-split {
 
 .fs-split {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
 
   @media (max-width: $bp-tablet ) {
@@ -81,7 +120,7 @@ body.page-template-page-fullsingle-split {
   //-------------------------------------------------------------------------------
 
   .split-image {
-    width: 50%;
+    width: 33%;
     height: 100vh;
     // background-image: $image-background;
     // background-position:center center;
@@ -99,12 +138,13 @@ body.page-template-page-fullsingle-split {
   //-------------------------------------------------------------------------------
 
   .split-content {
-    width: 50%;
-    min-height: 100vh;
+    width: 100%;
+//    min-height: 100vh;
     display: flex;
-    align-items: center;
-      justify-content: center;
-      overflow: auto;
+    align-self: flex-end;
+    align-items: flex-end;
+    justify-content: flex-start;
+    overflow: auto;
 
     @media (max-width: $bp-tablet ) {
       width: 100%;
@@ -113,9 +153,9 @@ body.page-template-page-fullsingle-split {
 
     .split-content-vertically-center {
       padding: 80px;
-      max-width: 640px;
+//      max-width: 640px;
       margin-top: auto;
-        margin-bottom: auto;
+      margin-bottom: auto;
 
       @media (max-width: $bp-smallish ) {
         padding: 60px;
@@ -123,10 +163,10 @@ body.page-template-page-fullsingle-split {
 
       @media (max-width: $bp-tablet ) {
         padding: 40px;
+        padding-top: 80px;
       }
 
     }
-
   }
 
 }
@@ -140,18 +180,24 @@ body.page-template-page-fullsingle-split {
 //-------------------------------------------------------------------------------
 
 .split-intro {
-  font-weight: 600;
-  font-size: 64px;
-  line-height: 80px;
-  letter-spacing: -2px;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.25;
+//  letter-spacing: -2px;
+  margin-bottom: 20px;
+
+  @media (min-width: $bp-tablet) {
+    font-size: 64px;
+    line-height: 1.08;
+  }
 
   h1 {
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
     font-size: 16px;
-    line-height: 16px;
-    margin-bottom: 40px;
-    letter-spacing: 0.4px;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
     color: $color-maverick;
   }
 
@@ -166,34 +212,25 @@ body.page-template-page-fullsingle-split {
 //-------------------------------------------------------------------------------
 
 .split-bio {
-  padding: 40px 0 20px 0;
-  font-family: 'Lora', serif;
+  margin: 20px 0 40px;
+  font-family: 'ITC Charter', 'Charter ITC Std', 'Charter', Georgia, serif;
 
   @media (max-width: $bp-smallish ) {
-    padding: 30px 0 10px 0;
+//    padding: 30px 0 10px 0;
   }
 
   @media (max-width: $bp-tablet ) {
-    padding: 20px 0 0 0;
+//    padding: 20px 0 0 0;
+  }
+  
+  a {
+    @extend %decorated-link;
   }
 
   p {
     color: $color-text;
     margin-bottom: 20px;
     line-height: inherit;
-  }
-
-  a {
-    color: $color-link;
-    transition-duration: 0.5s;
-    border-bottom: 1px dotted $color-link;
-
-    &:hover {
-      color: $color-link-hover;
-      transition-duration: 0.1s;
-      border-bottom: 1px dotted $color-link-hover;
-    }
-
   }
 
   em,
@@ -220,7 +257,7 @@ body.page-template-page-fullsingle-split {
   h5, .h5,
   h6, .h6 {
     font-style: normal;
-    font-weight: normal;
+    font-weight: 300;
     color: inherit;
   }
 
@@ -317,11 +354,12 @@ body.page-template-page-fullsingle-split {
 //-------------------------------------------------------------------------------
 
 .split-lists {
+  max-width: 480px;
 
   .split-list {
     width: 30%;
     display: inline-block;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     vertical-align: top;
 
     @media (max-width: $bp-mobile ) {
@@ -333,7 +371,7 @@ body.page-template-page-fullsingle-split {
       text-transform: uppercase;
       font-size: 11px;
       line-height: 11px;
-      margin-bottom: 31px;
+      margin-bottom: 20px;
       color: $color-text;
       letter-spacing: 2px;
       opacity: 0.5;
@@ -343,12 +381,12 @@ body.page-template-page-fullsingle-split {
 
 
       li {
-        font-size: 16px;
-        line-height: 16px;
+        font-size: 14px;
+        line-height: 1.15;
         margin-bottom: 12px;
 
         a {
-          color: $color-link;
+          color: $color-text;
           transition-duration: 0.5s;
 
           &:hover {
@@ -375,7 +413,7 @@ body.page-template-page-fullsingle-split {
 //  Cheers, Rob (@robhope)
 
 .split-credit {
-  opacity: 0.4;
+  opacity: 0.7;
 
   p {
     font-size: 12px;
