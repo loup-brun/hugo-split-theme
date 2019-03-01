@@ -19,7 +19,10 @@
 {{ with .Site.Params.twitterHandle }}<meta name="twitter:site" content="@{{ . }}" />{{ end }}
 
 <!-- Favicon -->
-{{ with .Site.Params.favicon }}<link rel="icon" href="{{ . | absURL }}" />{{ end }}
+{{ with .Site.Params.favicon }}<link rel="shortcut icon" href="{{ . | absURL }}" />{{ end }}
+
+<!-- Favicon -->
+{{ with .Site.Params.appleTouchIcon }}<link rel="icon apple-touch-icon" href="{{ . | absURL }}" />{{ end }}
 
 <!-- Styles -->
 <style>
