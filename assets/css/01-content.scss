@@ -7,6 +7,7 @@
 
 $color-light:     #E5ECE1;
 $color-richgreen: #0d3018;
+$color-lime:      #55ff00;
 $color-gold:      #FC8122;
 $color-charcoal:  #0C1A25;
 $color-blue:      #387A9F;
@@ -16,14 +17,21 @@ $color-red:       #DD1A2A;
 $color-background : $color-light;
 $color-text       : $color-richgreen;
 $color-link       : $color-red;
-$color-link-hover : $color-red;
+$color-link-hover : rgba($color-text, 0.6);
 $color-maverick   : $color-richgreen;
 $color-tagline    : $color-richgreen;
+
+// Fonts
+$font-family-body: 'ITC Charter', 'Charter ITC Std', 'Charter', Georgia, serif;
+$font-family-sans: 'Sarine', sans-serif;
+$font-family-special: 'Hangul', Futura, sans-serif;
 
 // Breakpoints
 $bp-smallish      : 1200px;
 $bp-tablet        : 800px;
 $bp-mobile        : 500px;
+
+$easeOutCirc:     cubic-bezier(0, 0.55, 0.45, 1);
 
 // Images
 // $image-background : url('../../images/background.jpg');
@@ -37,13 +45,11 @@ $bp-mobile        : 500px;
     to   { opacity: 1;}
 }
 
-
-
 //-------------------------------------------------------------------------------
 // Select (theming)
 //-------------------------------------------------------------------------------
 ::selection {
-  background-color: rgba($color-maverick, 0.15);
+  background-color: rgba($color-lime, 0.4);
   color: $color-text;
 }
 
@@ -84,7 +90,7 @@ html {
 
 body.page-template-page-fullsingle-split {
   background-color: $color-background;
-  font-family: 'Sarine', Futura, sans-serif;
+  font-family: $font-family-sans;
   font-weight: 300;
   font-size: 21px;
   line-height: 1.5;
@@ -94,11 +100,19 @@ body.page-template-page-fullsingle-split {
   //-------------------------------------------------------------------------------
   // Global Styles
   //-------------------------------------------------------------------------------
+}
 
-  p {
-    color: $color-text;
+hr {
+  border: 0;
+  border-top: 2px solid currentColor;
+  height: 0;
+  color: inherit;
+}
+
+a {
+  &:focus {
+    outline: 6px solid $color-lime;
   }
-
 }
 
 //-------------------------------------------------------------------------------
@@ -108,7 +122,11 @@ body.page-template-page-fullsingle-split {
 .fs-split {
   width: 100vw;
   min-height: 100vh;
-  display: flex;
+  
+  @media (min-width: $bp-tablet) {
+    display: flex;
+    position: relative;
+  }
 
   @media (max-width: $bp-tablet ) {
     height: auto;
@@ -120,17 +138,20 @@ body.page-template-page-fullsingle-split {
   //-------------------------------------------------------------------------------
 
   .split-image {
-    width: 33%;
-    height: 100vh;
+    order: 2;
+    height: 80vh;
+    width: 100%;
+
+    @media (min-width: $bp-tablet) {
+      position: sticky;
+      top: 0;
+      width: 46%;
+      height: 100vh;
+    }
+
     // background-image: $image-background;
     // background-position:center center;
     background-size:cover;
-
-    @media (max-width: $bp-tablet ) {
-      height: 80vh;
-      width: 100%;
-    }
-
   }
 
   //-------------------------------------------------------------------------------
@@ -138,37 +159,34 @@ body.page-template-page-fullsingle-split {
   //-------------------------------------------------------------------------------
 
   .split-content {
+    order: 1;
     width: 100%;
 //    min-height: 100vh;
     display: flex;
-    align-self: flex-end;
-    align-items: flex-end;
-    justify-content: flex-start;
+    align-items: flex-start;
     overflow: auto;
 
-    @media (max-width: $bp-tablet ) {
-      width: 100%;
-      height: auto;
+    @media (min-width: $bp-tablet) {
+      width: 54%;
     }
 
     .split-content-vertically-center {
-      padding: 80px;
+      padding: 5vw;
 //      max-width: 640px;
       margin-top: auto;
-      margin-bottom: auto;
+//      margin-bottom: auto;
 
-      @media (max-width: $bp-smallish ) {
+      @media (max-width: $bp-smallish) {
         padding: 60px;
       }
 
-      @media (max-width: $bp-tablet ) {
+      @media (max-width: $bp-tablet) {
         padding: 40px;
         padding-top: 80px;
       }
 
     }
   }
-
 }
 
 //-------------------------------------------------------------------------------
@@ -187,24 +205,32 @@ body.page-template-page-fullsingle-split {
   margin-bottom: 20px;
 
   @media (min-width: $bp-tablet) {
-    font-size: 64px;
     line-height: 1.08;
   }
 
   h1 {
-    font-weight: 300;
-    text-transform: uppercase;
-    font-size: 16px;
+    font-family: $font-family-special;
+    font-weight: 400;
+//    text-transform: uppercase;
+    font-size: 56px;
+    display: inline-block;
+    
+    @media (min-width: $bp-tablet) {
+      font-size: 72px;
+    }
     line-height: 1.15;
-    margin-bottom: 24px;
-    letter-spacing: 0.5px;
+    margin-bottom: 0.5em;
+//    letter-spacing: 0.5px;
     color: $color-maverick;
+
+    border-bottom: 4px solid currentColor;
+    line-height: 0.85;
   }
 
   .tagline {
     color: $color-tagline;
+    font-size: 21px;
   }
-
 }
 
 //-------------------------------------------------------------------------------
@@ -213,7 +239,8 @@ body.page-template-page-fullsingle-split {
 
 .split-bio {
   margin: 20px 0 40px;
-  font-family: 'ITC Charter', 'Charter ITC Std', 'Charter', Georgia, serif;
+  font-family: $font-family-sans;
+  font-weight: 300;
 
   @media (max-width: $bp-smallish ) {
 //    padding: 30px 0 10px 0;
@@ -359,7 +386,7 @@ body.page-template-page-fullsingle-split {
   .split-list {
     width: 30%;
     display: inline-block;
-    margin-bottom: 30px;
+    margin-bottom: 1em;
     vertical-align: top;
 
     @media (max-width: $bp-mobile ) {
@@ -369,8 +396,8 @@ body.page-template-page-fullsingle-split {
     h3 {
       font-weight: 400;
       text-transform: uppercase;
-      font-size: 11px;
-      line-height: 11px;
+      font-size: 12px;
+      line-height: 1;
       margin-bottom: 20px;
       color: $color-text;
       letter-spacing: 2px;
@@ -378,20 +405,25 @@ body.page-template-page-fullsingle-split {
     }
 
     ul {
-
-
       li {
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.25;
         margin-bottom: 12px;
 
         a {
           color: $color-text;
-          transition-duration: 0.5s;
+          display: inline-block;
+          padding: .15em 0;
+          background-color: transparent;
+          background-image: linear-gradient(to left, rgba($color-lime, 1),rgba($color-lime, 1));
+          background-size: 100% 3px;
+          background-repeat: no-repeat;
+          background-position: 0 70%;
+          transition: all .6s $easeOutCirc;
 
           &:hover {
             color: $color-link-hover;
-            transition-duration: 0.1s;
+            transition-duration: .1s;
           }
 
         }

@@ -162,13 +162,13 @@
 }
 
 
-//@font-face {
-//  font-family: 'Sarine';
-//  src: url('/fonts/sarine/2FAAFA_A_0.eot');
-//  src: url('/fonts/sarine/2FAAFA_A_0.eot?#iefix') format('embedded-opentype'), url('/fonts/sarine/2FAAFA_A_0.woff2') format('woff2'), url('/fonts/sarine/2FAAFA_A_0.woff') format('woff'), url('/fonts/sarine/2FAAFA_A_0.ttf') format('truetype');
-//  font-weight: normal;
-//  font-style: normal;
-//}
+@font-face {
+  font-family: 'Sarine';
+  src: url('/fonts/sarine/2FAAFA_A_0.eot');
+  src: url('/fonts/sarine/2FAAFA_A_0.eot?#iefix') format('embedded-opentype'), url('/fonts/sarine/2FAAFA_A_0.woff2') format('woff2'), url('/fonts/sarine/2FAAFA_A_0.woff') format('woff'), url('/fonts/sarine/2FAAFA_A_0.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
 //
 //
 //@font-face {
@@ -319,3 +319,20 @@
 //	font-weight: bold;
 //	font-style: italic;
 //}
+
+
+// ----------------------------------------
+// Charter
+// ----------------------------------------
+
+@font-face {
+  font-family: 'Hangul';
+  src: url('/fonts/hangul/vtf_hngl-webfont.eot');
+  src: url('/fonts/hangul/vtf_hngl-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/hangul/vtf_hngl-webfont.woff') format('woff'),
+       url('/fonts/hangul/vtf_hngl-webfont.ttf') format('truetype'),;
+  font-weight: normal;
+  font-style: normal;
+
+}
+
