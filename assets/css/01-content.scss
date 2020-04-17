@@ -175,20 +175,8 @@ a {
     }
 
     .split-content-vertically-center {
-      padding: 3vw 5vw;
-//      max-width: 640px;
+      padding: 40px 5vw;
       margin-top: auto;
-//      margin-bottom: auto;
-//
-//      @media (min-width: $bp-smallish) {
-//        padding: 60px;
-//      }
-
-      @media (max-width: $bp-tablet) {
-//        padding: 40px;
-        padding-top: 80px;
-      }
-
     }
   }
 }
@@ -255,7 +243,6 @@ a {
   }
 
   p {
-    color: $color-text;
     margin-bottom: 20px;
     line-height: inherit;
   }
@@ -403,7 +390,6 @@ a {
       font-size: 12px;
       line-height: 1;
       margin-bottom: 20px;
-      color: $color-text;
       letter-spacing: 2px;
       opacity: 0.5;
     }
