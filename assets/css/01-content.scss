@@ -28,7 +28,7 @@ $font-family-special: 'Hangul', Futura, sans-serif;
 
 // Breakpoints
 $bp-smallish      : 1200px;
-$bp-tablet        : 800px;
+$bp-tablet        : 820px;
 $bp-mobile        : 500px;
 
 $easeOutCirc:     cubic-bezier(0, 0.55, 0.45, 1);
@@ -92,8 +92,8 @@ body.page-template-page-fullsingle-split {
   background-color: $color-background;
   font-family: $font-family-sans;
   font-weight: 300;
-  font-size: 21px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.42;
   color: $color-text;
   animation: fadein 2s;
 
@@ -126,11 +126,9 @@ a {
   @media (min-width: $bp-tablet) {
     display: flex;
     position: relative;
-  }
-
-  @media (max-width: $bp-tablet ) {
-    height: auto;
-    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
   }
 
   //-------------------------------------------------------------------------------
@@ -145,13 +143,18 @@ a {
     @media (min-width: $bp-tablet) {
       position: sticky;
       top: 0;
-      width: 46%;
+      width: 42%;
       height: 100vh;
+      flex-shrink: 0;
+    }
+    @media (min-width: $bp-tablet) and (min-aspect-ratio: 1/1) and (max-aspect-ratio: 7/5) {
+      width: 50%;
+    }
+    @media (min-width: $bp-tablet) and (min-aspect-ratio: 2/1) {
+      width: 36%;
     }
 
-    // background-image: $image-background;
-    // background-position:center center;
-    background-size:cover;
+    background-size: cover;
   }
 
   //-------------------------------------------------------------------------------
@@ -167,21 +170,22 @@ a {
     overflow: auto;
 
     @media (min-width: $bp-tablet) {
-      width: 54%;
+      flex-basis: flex-grow;
+      width: auto;
     }
 
     .split-content-vertically-center {
-      padding: 5vw;
+      padding: 3vw 5vw;
 //      max-width: 640px;
       margin-top: auto;
 //      margin-bottom: auto;
-
-      @media (max-width: $bp-smallish) {
-        padding: 60px;
-      }
+//
+//      @media (min-width: $bp-smallish) {
+//        padding: 60px;
+//      }
 
       @media (max-width: $bp-tablet) {
-        padding: 40px;
+//        padding: 40px;
         padding-top: 80px;
       }
 
@@ -211,7 +215,6 @@ a {
   h1 {
     font-family: $font-family-special;
     font-weight: 400;
-//    text-transform: uppercase;
     font-size: 56px;
     display: inline-block;
     
@@ -220,15 +223,12 @@ a {
     }
     line-height: 1.15;
     margin-bottom: 0.5em;
-//    letter-spacing: 0.5px;
-    color: $color-maverick;
 
     border-bottom: 4px solid currentColor;
     line-height: 0.85;
   }
 
   .tagline {
-    color: $color-tagline;
     font-size: 21px;
   }
 }
@@ -389,7 +389,11 @@ a {
     margin-bottom: 1em;
     vertical-align: top;
 
-    @media (max-width: $bp-mobile ) {
+    @media (min-width: $bp-mobile) {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: $bp-mobile) {
       width: 90%;
     }
 
@@ -406,9 +410,12 @@ a {
 
     ul {
       li {
-        font-size: 16px;
         line-height: 1.25;
         margin-bottom: 12px;
+        font-size: 16px;
+        &:last-child {
+          margin-bottom: 0;
+        }
 
         a {
           color: $color-text;
@@ -454,9 +461,7 @@ a {
     a {
       color: $color-text;
     }
-
   }
-
 }
 
 //-------------------------------------------------------------------------------
