@@ -54,9 +54,20 @@ $easeOutCirc:     cubic-bezier(0, 0.55, 0.45, 1);
 }
 
 %decorated-link {
-  color: $color-link;
-  transition-duration: 0.6s;
-  border-bottom: 1px solid $color-link;
+  color: $color-text;
+  display: inline-block;
+  padding: .15em 0;
+  background-color: transparent;
+  background-image: linear-gradient(to left, rgba($color-lime, 1),rgba($color-lime, 1));
+  background-size: 100% .3em;
+  background-repeat: no-repeat;
+  background-position: 0 69%;
+  transition: all .6s $easeOutCirc;
+
+  &:hover {
+    color: $color-link-hover;
+    transition-duration: .15s;
+  }
   
   .link-reveal {
     display: inline-block;
@@ -64,17 +75,13 @@ $easeOutCirc:     cubic-bezier(0, 0.55, 0.45, 1);
     transition: .3s;
     opacity: 0;
     height: 1em;
-    transform: translateX(-5px);
+    transform: translateX(-15px);
   }
 
   &:hover {
-    color: $color-link-hover;
-    transition-duration: 0.6s;
-    border-bottom-color: transparent;
-    
     .link-reveal {
       opacity: 1;
-      width: 1em;
+      width: .75em;
       transform: translateX(0);
     }
   }
@@ -100,6 +107,9 @@ body.page-template-page-fullsingle-split {
   //-------------------------------------------------------------------------------
   // Global Styles
   //-------------------------------------------------------------------------------
+  a {
+    @extend %decorated-link;
+  }
 }
 
 hr {
@@ -110,6 +120,8 @@ hr {
 }
 
 a {
+  color: $color-link;
+  outline-color: $color-lime;
   &:focus {
     outline: 6px solid $color-lime;
   }
@@ -175,7 +187,7 @@ a {
     }
 
     .split-content-vertically-center {
-      padding: 40px 5vw;
+      padding: 60px 5vw 40px;
       margin-top: auto;
     }
   }
@@ -191,29 +203,22 @@ a {
 
 .split-intro {
   font-weight: 300;
-  font-size: 28px;
-  line-height: 1.25;
+  font-size: 32px;
+  line-height: 1.08;
 //  letter-spacing: -2px;
-  margin-bottom: 20px;
-
-  @media (min-width: $bp-tablet) {
-    line-height: 1.08;
-  }
+  margin-bottom: 1.5em;
 
   h1 {
     font-family: $font-family-special;
     font-weight: 400;
-    font-size: 56px;
     display: inline-block;
-    
+    line-height: 0.85;
+    margin-bottom: 0.3em;
+    font-size: 56px;
     @media (min-width: $bp-tablet) {
       font-size: 72px;
     }
-    line-height: 1.15;
-    margin-bottom: 0.5em;
-
     border-bottom: 4px solid currentColor;
-    line-height: 0.85;
   }
 
   .tagline {
@@ -226,9 +231,7 @@ a {
 //-------------------------------------------------------------------------------
 
 .split-bio {
-  margin: 20px 0 40px;
-  font-family: $font-family-sans;
-  font-weight: 300;
+  margin: 1em 0;
 
   @media (max-width: $bp-smallish ) {
 //    padding: 30px 0 10px 0;
@@ -236,15 +239,6 @@ a {
 
   @media (max-width: $bp-tablet ) {
 //    padding: 20px 0 0 0;
-  }
-  
-  a {
-    @extend %decorated-link;
-  }
-
-  p {
-    margin-bottom: 20px;
-    line-height: inherit;
   }
 
   em,
@@ -368,65 +362,42 @@ a {
 //-------------------------------------------------------------------------------
 
 .split-lists {
-  max-width: 480px;
+  max-width: 540px;
+  
+  font-size: 24px;
+  
+  @media (min-width: $bp-mobile) {
+    font-size: inherit;
+  }
 
   .split-list {
-    width: 30%;
-    display: inline-block;
-    margin-bottom: 1em;
-    vertical-align: top;
+    margin-bottom: 3em;
 
     @media (min-width: $bp-mobile) {
       margin-bottom: 0;
-    }
-
-    @media (max-width: $bp-mobile) {
-      width: 90%;
+      width: 33%; // make sure there is no whitespace between the lists
+      vertical-align: top;
+      display: inline-block;
     }
 
     h3 {
-      font-weight: 400;
-      text-transform: uppercase;
-      font-size: 12px;
+//      text-transform: uppercase;
+//      font-size: 12px;
       line-height: 1;
-      margin-bottom: 20px;
+      margin-bottom: 1em;
       letter-spacing: 2px;
       opacity: 0.5;
     }
 
     ul {
       li {
-        line-height: 1.25;
-        margin-bottom: 12px;
-        font-size: 16px;
+        margin-bottom: 0.67em;
         &:last-child {
           margin-bottom: 0;
         }
-
-        a {
-          color: $color-text;
-          display: inline-block;
-          padding: .15em 0;
-          background-color: transparent;
-          background-image: linear-gradient(to left, rgba($color-lime, 1),rgba($color-lime, 1));
-          background-size: 100% 3px;
-          background-repeat: no-repeat;
-          background-position: 0 70%;
-          transition: all .6s $easeOutCirc;
-
-          &:hover {
-            color: $color-link-hover;
-            transition-duration: .1s;
-          }
-
-        }
-
       }
-
     }
-
   }
-
 }
 
 //-------------------------------------------------------------------------------

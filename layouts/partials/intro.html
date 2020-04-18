@@ -1,7 +1,7 @@
 <div class="split-intro">
-  {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
+  {{ with .Title }}<h1>{{ . | markdownify }}</h1>{{ end }}
   
   <br>
   
-  {{ with .Params.tagline }}<span class="tagline">{{ . | safeHTML }}</span>{{ end }}
+  {{ with .Params.tagline }}<span class="tagline">{{ . | markdownify }}</span>{{ end }}
 </div>

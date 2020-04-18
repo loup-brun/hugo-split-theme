@@ -22,7 +22,9 @@
 {{ with .Site.Params.favicon }}<link rel="shortcut icon" href="{{ . | absURL }}" />{{ end }}
 
 <!-- Favicon -->
-{{ with .Site.Params.appleTouchIcon }}<link rel="icon apple-touch-icon" href="{{ . | absURL }}" />{{ end }}
+{{ with .Site.Params.appleTouchIcon }}<link rel="icon apple-touch-icon" href="{{ . | absURL }}" sizes="180x180" />{{ end }}
+
+{{- partial "favicon.html" . -}}
 
 <!-- Styles -->
 <style>
